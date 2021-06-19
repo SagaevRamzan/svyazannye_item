@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Header/Header";
+import Content from "./Content/Content";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {deleteTodos, loadTodos, loadUsers} from "./Actions/actions";
+
+
+
+
 
 function App() {
+    const todos=useSelector(state=>state.todos);
+
+    const loading=useSelector(state=>state.loading);
+    const dispatch=useDispatch();
+    useEffect(()=>{
+        dispatch(loadTodos())
+        dispatch(deleteTodos())
+        dispatch(loadUsers())
+    },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+       <Header/>
+        {todos.map(todo=>{
+            return (<Content  key={todo.id} todo={todo}/>)
+        })}
+
+
     </div>
   );
 }
