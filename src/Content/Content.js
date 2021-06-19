@@ -7,7 +7,7 @@ function Content(props){
 
     const users=useSelector((state)=>state.users);
 
-    const user=users.filter(item=>{
+    const user=users.find(item=>{
         if(item.id===props.todo.userId){
 
             return true;
@@ -26,7 +26,7 @@ function Content(props){
                 <div className="sroka_sost">
                     <div className="item_id">{props.todo.id}</div>
                     <div className="item_title">{props.todo.title}</div>
-                    <div className="item_name">{user[0].name}</div>
+                    <div className="item_name">{user.name}</div>
                     <button className="item_delete" onClick={()=>{handleDelete(props.todo.id)}}>Delete</button>
                 </div>
               </div>)

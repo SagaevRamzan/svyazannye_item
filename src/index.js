@@ -48,7 +48,7 @@ const reducer=(state=initialState,action)=>{
            return {
                ...state,
                users: action.payload,
-               user_loading: true
+               user_loading: false
 
            }
        default: return  state

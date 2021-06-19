@@ -12,6 +12,7 @@ function App() {
     const todos=useSelector(state=>state.todos);
 
     const loading=useSelector(state=>state.loading);
+    const user_loading=useSelector((state)=>state.user_loading)
     const dispatch=useDispatch();
     useEffect(()=>{
         dispatch(loadTodos())
@@ -22,7 +23,7 @@ function App() {
   return (
     <div className="app">
        <Header/>
-        {todos.map(todo=>{
+        {loading || user_loading ?'идет загрузка...': todos.map(todo=>{
             return (<Content  key={todo.id} todo={todo}/>)
         })}
 
